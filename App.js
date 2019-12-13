@@ -1,18 +1,28 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
-const HomeScreen = () =>
+import ChatScreen from './components/Chat'
+
+const HomeScreen = ({ navigation }) =>
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Welcome to Puttchat</Text>
+    <Text>Welcome to PuttChat</Text>
+    <Button
+      title="Chat"
+      onPress={() => navigation.navigate('Chat')}
+    />
   </View>
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+const AppNavigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Chat: ChatScreen,
+  },
+  {
+    initialRouteName: 'Home'
   }
-})
+)
 
 export default createAppContainer(AppNavigator)
 
