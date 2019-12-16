@@ -11,8 +11,17 @@ const AppNavigator = createStackNavigator(
     Putt: PuttScreen,
   },
   {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTitle: 'PuttChat'
+    },
+  },
+  {
     initialRouteName: 'Home'
-  }
+  },
+
 )
 
 export default createAppContainer(AppNavigator)
