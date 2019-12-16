@@ -1,36 +1,31 @@
-import React from 'react'
-import { View, Text, Button } from 'react-native'
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
+import React, { useState } from 'react'
+import { AppLoading } from 'expo'
+import * as Font from 'expo-font'
 
-import ChatScreen from './screens/Chat'
-import PuttScreen from './screens/Putt'
+import Routes from './Routes'
 
-const HomeScreen = ({ navigation }) =>
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Welcome to PuttChat</Text>
-    <Button
-      title="Chat"
-      onPress={() => navigation.navigate('Chat')}
-    />
-    <Button
-      title="Putt"
-      onPress={() => navigation.navigate('Putt')}
-    />
-  </View>
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
+  })
+}
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Chat: ChatScreen,
-    Putt: PuttScreen,
-  },
-  {
-    initialRouteName: 'Home'
+export default function App() {
+  const [dataLoaded, setDataLoaded] = useState(false)
+
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+      />
+    )
   }
-)
 
-export default createAppContainer(AppNavigator)
+  return (
+    <Routes />
+  )
+}
 
 // import Chat from './components/Chat'
 //
