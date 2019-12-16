@@ -15,7 +15,10 @@ const AppNavigator = createStackNavigator(
       headerStyle: {
         backgroundColor: '#f4511e',
       },
-      headerTitle: 'PuttChat'
+      headerTitle: 'PuttChat',
+      headerTitleStyle: {
+        color: 'white'
+      }
     },
   },
   {
